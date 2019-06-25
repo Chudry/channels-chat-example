@@ -1,0 +1,50 @@
+{% load static i18n environ account %}
+<html lang="{% get_current_language as LANGUAGE_CODE %}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}{% getenv APP_NAME %}</title>
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'css/bundle.css' %}">
+    <script src="{% static 'js/bundle.js' %}" defer></script>
+  </head>
+  <body
+    data-domain="{% getenv DOMAIN %}"
+    data-logged-user-id="{{ user.id|default:'' }}"
+  >
+    <header>
+      <div class="uk-container uk-flex uk-flex-between">
+        <div>
+          <span uk-icon="hashtag"></span> {% getenv APP_NAME %}
+        </div>
+        <div>
+          {% if user.is_authenticated %}
+            <a href="{% url 'account_logout' %}" class="uk-link-text">
+              <span uk-icon="user"></span> {% user_display user %}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+    <main class="uk-section">
+      <section class="uk-container">
+        {% if messages %}
+          {% for message in messages %}
+            <div uk-alert class="uk-alert-{{message.tags}} uk-margin-bottom">
+              <a class="uk-alert-close" uk-close></a>
+              <p>{{ message }}</p>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </section>
+      <article class="uk-container">
+        {% block content %}{% endblock %}
+      </article>
+    </main>
+    <footer>
+      <div class="uk-container uk-flex uk-flex-center">
+        <small>&copy; 2019 github.com/yano3nora/channels-chat-example</small>
+      </div>
+    </footer>
+  </body>
+</html>

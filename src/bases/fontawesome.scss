@@ -1,0 +1,19 @@
+i.fa {
+  width: 1em;
+  text-align: center;
+  vertical-align: middle;
+  padding-bottom: 1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  i.fa {
+    width: 1.1em;
+    vertical-align: baseline;
+    padding: 0;
+  }
+}

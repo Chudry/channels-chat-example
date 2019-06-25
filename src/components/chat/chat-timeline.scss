@@ -1,0 +1,28 @@
+.chat-timeline {
+  .timeline {
+    display: flex;
+
+    .message {
+      margin-left: 1rem;
+    }
+
+    .username {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      background: #c4f5d5;
+    }
+
+    &.timeline--is-mine {
+      flex-direction: row-reverse;
+
+      .message {
+        margin-left: 0;
+        margin-right: 1rem;
+      }
+
+      .username {
+        background: #c4e4f5;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+django
+git+https://github.com/unbit/uwsgi.git@master#egg=uwsgi
+psycopg2
+dj-database-url
+django_extensions
+django-allauth
+uvicorn >= 0.8.1
+channels
+channels-redis
+redis
+celery
+django-celery-results
