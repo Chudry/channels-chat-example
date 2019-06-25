@@ -5,7 +5,9 @@ channels-chat-example
 > author: yano3@alhino.jp
 
 ## OVERVIEW
-> https://github.com/yano3nora/channels-chat-example
+> https://github.com/yano3nora/channels-chat-example  
+> > https://github.com/yano3nora/reactpack  
+> > https://github.com/yano3nora/djangdock  
 
 ### Composition.
 - back-end
