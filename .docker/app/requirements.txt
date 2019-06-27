@@ -1,6 +1,7 @@
 django
 git+https://github.com/unbit/uwsgi.git@master#egg=uwsgi
 psycopg2
+PyYAML
 dj-database-url
 django_extensions
 django-allauth
