@@ -29,7 +29,7 @@ COPY . /app
 # $ uvicorn django_project.asgi:application --ssl-keyfile hoge.key --ssl-certfile hoge.pem  # SSL.
 
 ARG CREDENTIAL
-RUN mkdir -p /root/run/celery
+RUN mkdir -p /root/run/celery && rm -rf /root/run/celery/*
 CMD celery -A djangdock worker --detach --pidfile="/root/run/celery/%n.pid" && \
     uwsgi --ini /app/.docker/app/django.ini --master -d /dev/stdout && \
     uvicorn djangdock.asgi:application --host 0.0.0.0 --port 443 --reload --proxy-headers --ssl-keyfile .credentials/${CREDENTIAL}.key --ssl-certfile .credentials/${CREDENTIAL}.crt
