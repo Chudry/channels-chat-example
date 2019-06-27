@@ -6,12 +6,11 @@ import { MessageModule } from 'modules/message-module'
 /**
  * Container-based sagas middleware.
  */
-export function * ChatSagas () {
+export function * ChatSagas (...watchActions) {
   const wsApi  = yield select(state => state.app.websocketApi)
   const room   = window.location.pathname.split('/').filter((v) => v !== '').pop()
   const socket = new WebSocket(wsApi + '/chat/' + room + '/')
   // Watch outgoing Redux Action to WebSocket another worker process.
-  const watchActions = ['message/initRoom', 'message/sendMessage', 'message/sendClear']
   yield takeLatest(watchActions, sendWebSocket, socket)
   // Watch incoming message from WebSocket.
   const channel = yield call(initWebsocket, socket, room)

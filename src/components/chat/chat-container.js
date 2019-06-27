@@ -15,7 +15,12 @@ import { ChatTimeline }  from 'components/chat/chat-timeline'
 const dest = document.querySelector('#chat-container')
 if (dest) {
   // Run workers required on this container, using global worker.
-  Saga.run(ChatSagas)
+  Saga.run(ChatSagas, [
+    // Watch actions.
+    'message/initRoom',
+    'message/sendMessage',
+    'message/sendClear',
+  ])
   // Render child components, using global state.
   render(
     <Provider store={Store}>
