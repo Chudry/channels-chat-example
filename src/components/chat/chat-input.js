@@ -9,7 +9,7 @@ export const ChatInput = (props) => {
   const [value, setValue] = useState('')
   const dispatch          = useDispatch()
   const room              = useSelector(state => state.message.room)
-  const userId   = useSelector(state => state.app.loggedUserId)
+  const userId            = useSelector(state => state.app.loggedUserId)
 
   const handleOnKeyUp = (e) => {
     if (e.keyCode === 13) {  // enter, return.
