@@ -1,8 +1,8 @@
 @charset 'utf-8';
 
 @import 'bases/variables';
-@import "uikit/src/scss/variables-theme.scss";
-@import "uikit/src/scss/mixins-theme.scss";
-@import "uikit/src/scss/uikit-theme.scss";
+@import 'uikit/src/scss/variables-theme.scss';
+@import 'uikit/src/scss/mixins-theme.scss';
+@import 'uikit/src/scss/uikit-theme.scss';
 @import 'bases/**/!(_*).scss';
 @import 'components/**/!(_*).scss';
