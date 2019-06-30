@@ -16,8 +16,7 @@ export const UserModule = createSlice({
      * @param action - type: 'user/fetchUsers', payload: array
      */
     fetchUsers: (state, action) => {
-      state.users = []
-      state.users.push(...action.payload)
+      state.users = [...action.payload]
     },
 
   }

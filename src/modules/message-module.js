@@ -28,8 +28,7 @@ export const MessageModule = createSlice({
      * @param action - type: 'message/fetchMessages', payload: array
      */
     fetchMessages: (state, action) => {
-      state.messages = []
-      state.messages.push(...action.payload)
+      state.messages = [...action.payload].reverse()
     },
 
     /**
@@ -40,9 +39,9 @@ export const MessageModule = createSlice({
      * @param action - type: 'message/receiveMessage', payload: object
      */
     receiveMessage: (state, action) => {
-      const received = action.payload.pop()
+      const received = action.payload.slice().pop()
       if (!state.messages.some((message) => message.pk === received.pk)) {
-        state.messages.push(received)
+        state.messages.unshift(received)
       }
     },
 
@@ -54,7 +53,7 @@ export const MessageModule = createSlice({
      * @param action - type: 'message/sendMessage', payload: object
      */
     sendMessage: (state, action) => {
-      state.messages.push(action.payload)
+      state.messages.unshift(action.payload)
     },
 
     /**
