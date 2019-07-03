@@ -15,7 +15,7 @@ COPY . /app
 # Run application servers.
 #
 # [celery] Job worker
-# $ celery -A django_project worker --concurrency=1             # Attach mode.
+# $ celery -A django_project worker --concurrency=1 -l debug    # Attach mode.
 # $ celery -A django_project worker --detach --pidfile="/path"  # Detach mode.
 #
 # [uwsgi] HTTP
