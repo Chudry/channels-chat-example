@@ -21,6 +21,10 @@ export function * ChatSagas (...watchActions) {
 }
 
 function * sendWebSocket (socket, action) {
+  if (socket.readyState !== 1) {
+    socket.close()  // Trigger to onclose when disconnected.
+    return
+  }
   socket.send(JSON.stringify({
     type:    action.type,
     payload: action.payload,
@@ -50,9 +54,13 @@ function initWebsocket (socket, room) {
       }
     }
 
+    socket.onclose = (e) => {
+      socket.onmessage = null
+      alert('WebSocket was closed.')
+    }
+    
     return () => {
-      ws.onmessage = null
-      console.log('Socket close.')
+      console.log('WebSocket Saga was closed.')
       return emitter(END)
     }
   })
