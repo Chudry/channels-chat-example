@@ -41,7 +41,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def publish(self, event):
         """Broadcast to channel group clients on WebSocket."""
         await self.send(text_data=json.dumps({
-            'action': event['payload']['action'],
+            'type': event['payload']['type'],
             'payload': event['payload']['payload'],
         }))
 
@@ -49,14 +49,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
         """Send exists room messages to channel client on WebSocket."""
         messages = Message.objects.filter(room__exact=event['payload'])
         await self.send(text_data=json.dumps({
-            'action': 'message/fetchMessages',
+            'type': 'message/fetchMessages',
             'payload': json.loads(serializers.serialize('json', messages)),
         }))
         users = User.objects.all()
         await self.channel_layer.group_send(self.room_group_name, {
             'type': 'publish',
             'payload': {
-                'action': 'user/fetchUsers',
+                'type': 'user/fetchUsers',
                 'payload': json.loads(serializers.serialize('json', users, fields=('username'))),
             },
         })
@@ -73,7 +73,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_send(self.room_group_name, {
             'type': 'publish',
             'payload': {
-                'action': 'message/receiveMessage',
+                'type': 'message/receiveMessage',
                 'payload': json.loads(serializers.serialize('json', [message])),
             },
         })
@@ -88,7 +88,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_send(self.room_group_name, {
             'type': 'publish',
             'payload': {
-                'action':  'app/fetchNotice',
+                'type':  'app/fetchNotice',
                 'payload': 'Please wait 5sec, room clearing requested by ' + self.user.username,
             },
         })

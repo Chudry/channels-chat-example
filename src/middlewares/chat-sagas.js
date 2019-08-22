@@ -46,8 +46,8 @@ function initWebsocket (socket, room) {
       try {
         const message = JSON.parse(e.data) || null
         if (message) {
-          const { action, payload } = message
-          return emitter({ type: action, payload: payload })
+          const { type, payload } = message
+          return emitter({ type: type, payload: payload })
         }
       } catch (error) {
         console.error(`Error parsing : ${e.data}`)
@@ -58,7 +58,7 @@ function initWebsocket (socket, room) {
       socket.onmessage = null
       alert('WebSocket was closed.')
     }
-    
+
     return () => {
       console.log('WebSocket Saga was closed.')
       return emitter(END)

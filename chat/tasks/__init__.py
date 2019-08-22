@@ -11,14 +11,14 @@ def clear_room_messages(group, room):
     async_to_sync(channel_layer.group_send)(group, {
         'type':    'publish',
         'payload': {
-            'action':  'app/fetchNotice',
+            'type':  'app/fetchNotice',
             'payload': 'Clear process was succeeded.',
         },
     })
     async_to_sync(channel_layer.group_send)(group, {
         'type':    'publish',
         'payload': {
-            'action': 'message/initRoom',
+            'type': 'message/initRoom',
             'payload': room,
         },
     })
