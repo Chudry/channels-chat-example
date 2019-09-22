@@ -40,7 +40,7 @@ channels-chat-example
     /lib
       /postgresql
         /data
-[app]
+[app], [worker]
   /app
     /static
     /djangdock (project)

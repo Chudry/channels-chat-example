@@ -15,6 +15,17 @@ services:
     depends_on:
       - db
       - redis
+  worker:
+    dns: 8.8.8.8
+    build:
+      context: .
+      dockerfile: ./.docker/worker/Dockerfile
+    env_file: .env
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
   web:
     dns: 8.8.8.8
     build:
