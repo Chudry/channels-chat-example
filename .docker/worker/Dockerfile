@@ -18,4 +18,4 @@ COPY . /app
 # $ celery -A django_project worker --concurrency=1 -l debug    # Attach mode.
 # $ celery -A django_project worker --detach --pidfile="/path"  # Detach mode.
 
-CMD celery -A djangdock worker -l debug
+CMD celery -A djangdock worker -l info
